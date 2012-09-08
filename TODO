@@ -1,6 +1,5 @@
 TODO
 ====
-1. Dodelat imagemap
 2. Pridat metodu conf pro get/set konfiguraku.
 4. Moznost nevykreslovat nektere tlacitka.
 5.
@@ -8,4 +7,7 @@ TODO
 Applied
 =======
 3. Pridat 'config' parametr do konstruktoru.
+OK [20120909] skim
+
+1. Dodelat imagemap
 OK [20120909] skim
