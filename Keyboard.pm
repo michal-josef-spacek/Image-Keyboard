@@ -7,6 +7,7 @@ use warnings;
 # Modules.
 use Class::Utils qw(set_params);
 use Config::Dot;
+use Encode qw(decode_utf8);
 use Error::Pure qw(err);
 use File::Spec::Functions qw(catfile);
 use Imager;
@@ -43,7 +44,12 @@ sub image {
 	
 	# Process config.
 	my $config = slurp($config_file);
-	my $c = Config::Dot->new;
+	my $c = Config::Dot->new(
+		'callback' => sub {
+			my ($key_ar, $value) = @_;
+			return decode_utf8($value);
+		},
+	);
 	my $c_hr = $c->parse($config);
 
 	# Create image.
