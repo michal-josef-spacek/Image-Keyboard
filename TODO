@@ -1,6 +1,5 @@
 TODO
 ====
-2. Pridat metodu conf pro get/set konfiguraku.
 5.
 
 Applied
@@ -12,4 +11,7 @@ OK [20120909] skim
 OK [20120909] skim
 
 4. Moznost nevykreslovat nektere tlacitka.
+OK [20120909] skim
+
+2. Pridat metodu config pro get/set konfiguraku.
 OK [20120909] skim

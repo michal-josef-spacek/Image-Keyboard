@@ -45,11 +45,8 @@ sub new {
 		err "Bad files directory '$self->{'files_dir'}'.";
 	}
 
-	# Buttons.
-	$self->_buttons;
-
-	# Create imager objects for buttons.
-	$self->_button_imager;
+	# Config initialization.
+	$self->_config_init;
 
 	# Object.
 	return $self;
@@ -59,6 +56,16 @@ sub new {
 sub buttons {
 	my $self = shift;
 	return @{$self->{'buttons'}};
+}
+
+# Get or set configuration.
+sub config {
+	my ($self, $config) = @_;
+	if ($config) {
+		$self->{'config'} = $config;
+		$self->_config_init;
+	}
+	return $self->{'config'};
 }
 
 # Create image.
@@ -230,6 +237,19 @@ sub _button_imager {
 		# Get width and height.
 		($b_hr->{'w'}, $b_hr->{'h'}) = $self->_size($b_hr->{'imager'});
 	}
+	return;
+}
+
+# Config initialization.
+sub _config_init {
+	my $self = shift;
+
+	# Buttons.
+	$self->_buttons;
+
+	# Create imager objects for buttons.
+	$self->_button_imager;
+
 	return;
 }
 
