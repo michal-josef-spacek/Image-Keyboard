@@ -4,8 +4,8 @@ TODO
 2. Predelat tak, aby konfigurak byl jenom
 3. Pridat metodu conf pro get/set konfiguraku.
 4. Pridat 'conf' parametr do konstruktoru.
-5.
-
+5. Moznost nevykreslovat nektere tlacitka.
+6.
 
 Applied
 =======
