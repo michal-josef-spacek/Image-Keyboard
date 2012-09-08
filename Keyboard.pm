@@ -6,13 +6,11 @@ use warnings;
 
 # Modules.
 use Class::Utils qw(set_params);
-use Config::Dot;
 use Encode qw(decode_utf8);
 use Error::Pure qw(err);
 use File::Spec::Functions qw(catfile);
 use HTML::Entities;
 use Imager;
-use Perl6::Slurp qw(slurp);
 
 # Version.
 our $VERSION = 0.01;
@@ -24,11 +22,19 @@ sub new {
 	# Create object.
 	my $self = bless {}, $class;
 
+	# Configuration.
+	$self->{'config'} = undef;
+
 	# Images directory.
 	$self->{'files_dir'} = undef;
 
 	# Process params.
 	set_params($self, @params);
+
+	# Check for config.
+	if (! defined $self->{'config'}) {
+		err "Parameter 'config' is required.";
+	}
 
 	# Check images directory.
 	if (! -d $self->{'files_dir'}) {
@@ -36,7 +42,10 @@ sub new {
 	}
 
 	# Buttons.
-	$self->{'buttons'} = undef;
+	$self->{'buttons'} = [sort keys %{$self->{'config'}->{'button'}}];
+
+	# Create imager objects for buttons.
+	$self->_button_imager;
 
 	# Object.
 	return $self;
@@ -50,25 +59,15 @@ sub buttons {
 
 # Create image.
 sub image {
-	my ($self, $config_file, $image, $type) = @_;
-	
-	# Process config.
-	my $config = slurp($config_file);
-	my $c = Config::Dot->new(
-		'callback' => sub {
-			my ($key_ar, $value) = @_;
-			return decode_utf8($value);
-		},
-	);
-	$self->{'c'} = $c->parse($config);
+	my ($self, $image, $type) = @_;
 
 	# Create image.
-	if (! $self->{'c'}->{'background'}) {
+	if (! $self->{'config'}->{'background'}) {
 		err 'No background image.';
 	}
 	$self->{'i'} = Imager->new(
 		'file' => catfile($self->{'files_dir'},
-			$self->{'c'}->{'background'}),
+			$self->{'config'}->{'background'}),
 	);
 	if (! defined $self->{'i'}) {
 		err 'Cannot create background image',
@@ -79,42 +78,33 @@ sub image {
 	($self->{'width'}, $self->{'height'}) = $self->_size($self->{'i'});
 
 	# Add all buttons.
-	my @buttons = sort keys %{$self->{'c'}->{'button'}};
-	$self->{'buttons'} = scalar @buttons;
-	foreach my $button_nr (@buttons) {
-		my $b_hr = $self->{'c'}->{'button'}->{$button_nr};
-		my $image_path = catfile($self->{'files_dir'},
-			$b_hr->{'image'});
-		my $i = Imager->new('file' => $image_path);
-		if (! defined $i) {
-			err "Cannot create image '$image_path' object.",
-				'Error', Imager->errstr;
-		}
+	foreach my $button_nr (@{$self->{'buttons'}}) {
+		my $b_hr = $self->{'config'}->{'button'}->{$button_nr};
 		
 		# Add text.
 		my $font_file;
 		if (exists $b_hr->{'font'}->{'file'}) {
 			$font_file = catfile($self->{'files_dir'},
 				$b_hr->{'font'}->{'file'});
-		} elsif (exists $self->{'c'}->{'font'}->{'file'}) {
+		} elsif (exists $self->{'config'}->{'font'}->{'file'}) {
 			$font_file = catfile($self->{'files_dir'},
-				$self->{'c'}->{'font'}->{'file'});
+				$self->{'config'}->{'font'}->{'file'});
 		} else {
 			err "No font file for button '$button_nr'.";
 		}
 		my $font_color;
 		if (exists $b_hr->{'font'}->{'color'}) {
 			$font_color = $b_hr->{'font'}->{'color'};
-		} elsif (exists $self->{'c'}->{'font'}->{'color'}) {
-			$font_color = $self->{'c'}->{'font'}->{'color'};
+		} elsif (exists $self->{'config'}->{'font'}->{'color'}) {
+			$font_color = $self->{'config'}->{'font'}->{'color'};
 		} else {
 			err "No font color for button '$button_nr'.";
 		}
 		my $font_size;
 		if (exists $b_hr->{'font'}->{'size'}) {
 			$font_size = $b_hr->{'font'}->{'size'};
-		} elsif (exists $self->{'c'}->{'font'}->{'size'}) {
-			$font_size = $self->{'c'}->{'font'}->{'size'};
+		} elsif (exists $self->{'config'}->{'font'}->{'size'}) {
+			$font_size = $self->{'config'}->{'font'}->{'size'};
 		} else {
 			err "No font size for button '$button_nr'.";
 		}
@@ -127,7 +117,6 @@ sub image {
 			err 'Cannot create font object.',
 				'Error', Imager->errstr;
 		}
-		($b_hr->{'w'}, $b_hr->{'h'}) = $self->_size($i);
 		my $color = Imager::Color->new($font_color);
 		my ($neg_width, $global_descent, $pos_width, $global_ascent,
 			$descent, $ascent, $advance_width, $right_bearing)
@@ -145,7 +134,7 @@ sub image {
 		} else {
 			$y = $b_hr->{'h'} / 2 + $ascent / 2;
 		}
-		$i->string(
+		$b_hr->{'imager'}->string(
 			'aa' => 1,
 			'color' => $color,
 			'font' => $font,
@@ -158,7 +147,7 @@ sub image {
 		$self->{'i'}->rubthrough(
 			'tx' => $b_hr->{'pos'}->{'left'},
 			'ty' => $b_hr->{'pos'}->{'top'},
-			'src' => $i,
+			'src' => $b_hr->{'imager'},
 		);
 	}
 
@@ -184,8 +173,8 @@ sub imagemap {
 		['b', 'map'],
 		['a', 'name', 'keyboard'],
 	);
-	foreach my $button_nr (sort keys %{$self->{'c'}->{'button'}}) {
-		my $b_hr = $self->{'c'}->{'button'}->{$button_nr};
+	foreach my $button_nr (@{$self->{'buttons'}}) {
+		my $b_hr = $self->{'config'}->{'button'}->{$button_nr};
 		my $left = $b_hr->{'pos'}->{'left'};
 		my $top = $b_hr->{'pos'}->{'top'};
 		my $coords = join ',', ($left, $top, $left + $b_hr->{'w'},
@@ -205,6 +194,27 @@ sub imagemap {
 		['e', 'map'],
 	);
 	return @image_map;
+}
+
+# Create button Imager objects.
+sub _button_imager {
+	my $self = shift;
+	foreach my $button_nr (@{$self->{'buttons'}}) {
+		my $b_hr = $self->{'config'}->{'button'}->{$button_nr};
+
+		# Create imager object for button.
+		my $image_path = catfile($self->{'files_dir'},
+			$b_hr->{'image'});
+		$b_hr->{'imager'} = Imager->new('file' => $image_path);
+		if (! defined $b_hr->{'imager'}) {
+			err "Cannot create image '$image_path' object.",
+				'Error', Imager->errstr;
+		}
+
+		# Get width and height.
+		($b_hr->{'w'}, $b_hr->{'h'}) = $self->_size($b_hr->{'imager'});
+	}
+	return;
 }
 
 # Encode values for js.
