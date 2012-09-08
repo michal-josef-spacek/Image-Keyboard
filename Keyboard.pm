@@ -11,6 +11,7 @@ use Error::Pure qw(err);
 use File::Spec::Functions qw(catfile);
 use HTML::Entities;
 use Imager;
+use List::MoreUtils qw(none);
 
 # Version.
 our $VERSION = 0.01;
@@ -24,6 +25,9 @@ sub new {
 
 	# Configuration.
 	$self->{'config'} = undef;
+
+	# Disable buttons.
+	$self->{'disabled'} = [];
 
 	# Images directory.
 	$self->{'files_dir'} = undef;
@@ -42,7 +46,7 @@ sub new {
 	}
 
 	# Buttons.
-	$self->{'buttons'} = [sort keys %{$self->{'config'}->{'button'}}];
+	$self->_buttons;
 
 	# Create imager objects for buttons.
 	$self->_button_imager;
@@ -54,7 +58,7 @@ sub new {
 # Get buttons count.
 sub buttons {
 	my $self = shift;
-	return $self->{'buttons'};
+	return @{$self->{'buttons'}};
 }
 
 # Create image.
@@ -173,7 +177,7 @@ sub imagemap {
 		['b', 'map'],
 		['a', 'name', 'keyboard'],
 	);
-	foreach my $button_nr (@{$self->{'buttons'}}) {
+	foreach my $button_nr ($self->buttons) {
 		my $b_hr = $self->{'config'}->{'button'}->{$button_nr};
 		my $left = $b_hr->{'pos'}->{'left'};
 		my $top = $b_hr->{'pos'}->{'top'};
@@ -196,10 +200,22 @@ sub imagemap {
 	return @image_map;
 }
 
+# Get buttons.
+sub _buttons {
+	my $self = shift;
+	$self->{'buttons'} = [];
+	foreach my $button_nr (sort keys %{$self->{'config'}->{'button'}}) {
+		if (none { $_ eq $button_nr } @{$self->{'disabled'}}) {
+			push @{$self->{'buttons'}}, $button_nr;
+		}
+	}
+	return;
+}
+
 # Create button Imager objects.
 sub _button_imager {
 	my $self = shift;
-	foreach my $button_nr (@{$self->{'buttons'}}) {
+	foreach my $button_nr ($self->buttons) {
 		my $b_hr = $self->{'config'}->{'button'}->{$button_nr};
 
 		# Create imager object for button.
