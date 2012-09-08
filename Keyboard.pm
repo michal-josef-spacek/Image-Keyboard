@@ -210,7 +210,7 @@ sub imagemap {
 # Encode values for js.
 sub _encode_js {
 	my ($self, $value) = @_;
-	if ($value eq '<--') {
+	if ($value eq decode_utf8('←')) {
 		$value = 'Backspace';
 	} elsif ($value eq decode_utf8('°')) {
 		$value = 'Ring';
@@ -222,6 +222,8 @@ sub _encode_js {
 		$value = 'Apostrophe';
 	} elsif ($value eq decode_utf8('´')) {
 		$value = 'Acute_accent';
+	} elsif ($value eq '\\') {
+		$value = '\\\\';
 	}
 	my $enc_value = encode_entities($value);
 	$value = $enc_value;
