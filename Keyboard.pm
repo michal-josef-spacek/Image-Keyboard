@@ -179,10 +179,13 @@ sub image {
 
 # Get image map.
 sub imagemap {
-	my $self = shift;
+	my ($self, $usemap) = @_;
+	if (defined $usemap) {
+		$usemap = 'keyboard';
+	}
 	my @image_map = (
 		['b', 'map'],
-		['a', 'name', 'keyboard'],
+		['a', 'name', $usemap],
 	);
 	foreach my $button_nr ($self->buttons) {
 		my $b_hr = $self->{'config'}->{'button'}->{$button_nr};
