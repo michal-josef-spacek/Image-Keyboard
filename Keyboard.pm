@@ -233,7 +233,8 @@ sub _button_imager {
 			$b_hr->{'image'});
 		$b_hr->{'imager'} = Imager->new('file' => $image_path);
 		if (! defined $b_hr->{'imager'}) {
-			err "Cannot create image '$image_path' object.",
+			err "Cannot create imager object from ".
+				"'$image_path' file.",
 				'Error', Imager->errstr;
 		}
 
