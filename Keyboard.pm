@@ -180,7 +180,7 @@ sub image {
 # Get image map.
 sub imagemap {
 	my ($self, $usemap) = @_;
-	if (defined $usemap) {
+	if (! defined $usemap) {
 		$usemap = 'keyboard';
 	}
 	my @image_map = (
