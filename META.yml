@@ -20,6 +20,7 @@ meta-spec:
 name: Image-Keyboard
 no_index:
   directory:
+    - examples
     - inc
     - t
 requires:
@@ -34,4 +35,4 @@ resources:
   homepage: https://github.com/tupinek/Image-Keyboard
   license: http://opensource.org/licenses/bsd-license.php
   repository: git://github.com/tupinek/Image-Keyboard
-version: 0.01
+version: 0.02
