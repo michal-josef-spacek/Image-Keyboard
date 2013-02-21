@@ -292,3 +292,114 @@ sub _size {
 
 __END__
 
+=pod
+
+=encoding utf8
+
+=head1 NAME
+
+Image::Keyboard - TODO
+
+=head1 SYNOPSIS
+
+ use Image::Keyboard;
+ my $obj = Image::Keyboard->new(%parameters);
+ TODO
+
+=head1 METHODS
+
+=over 8
+
+=item C<new(%parameters)>
+
+Constructor.
+
+=over 8
+
+=item * C<config>
+
+ Configuration.
+ Default value is undef.
+
+=item * C<disabled>
+
+ Disable buttons.
+ Default value is [].
+
+=item * C<files_dir>
+
+ Images directory.
+ Default value is undef.
+
+=back
+
+=item C<buttons()>
+
+ TODO?
+ Get buttons count.
+ TODO
+
+=item C<config($config_hr)>
+
+ Get or set configuration.
+ Returns hash reference to configuration structure.
+
+=item C<image($image, $type)>
+
+ Create image.
+ Returns undef.
+
+=item C<imagemap($usemap)>
+
+ Get image map.
+ Returns array of Tags elements.
+
+=back
+
+=head1 ERRORS
+
+ new():
+         From Class::Utils::set_params():
+                 Unknown parameter '%s'.
+ TODO
+
+=head1 EXAMPLE
+
+ # Pragmas.
+ use strict;
+ use warnings;
+
+ # Modules.
+ use Image::Keyboard;
+
+ # TODO
+
+=head1 DEPENDENCIES
+
+L<Class::Utils>,
+L<Encode>,
+L<Error::Pure>,
+L<File::Spec::Functions>,
+L<HTML::Entities>,
+L<Imager>,
+L<List::MoreUtils>.
+
+=head1 SEE ALSO
+
+L<Tags>.
+
+=head1 AUTHOR
+
+Michal Špaček L<mailto:skim@cpan.org>
+
+L<http://skim.cz>
+
+=head1 LICENSE AND COPYRIGHT
+
+BSD license.
+
+=head1 VERSION
+
+0.01
+
+=cut
