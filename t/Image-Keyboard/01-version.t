@@ -4,7 +4,8 @@ use warnings;
 
 # Modules.
 use Image::Keyboard;
-use Test::More 'tests' => 1;
+use Test::More 'tests' => 2;
+use Test::NoWarnings;
 
 # Test.
-is($Image::Keyboard::VERSION, 0.02, 'Version.');
+is($Image::Keyboard::VERSION, 0.03, 'Version.');
