@@ -61,7 +61,7 @@ sub buttons {
 # Get or set configuration.
 sub config {
 	my ($self, $config_hr) = @_;
-	if ($config_hr) {
+	if (defined $config_hr) {
 		$self->{'config'} = $config_hr;
 		$self->_config_init;
 	}

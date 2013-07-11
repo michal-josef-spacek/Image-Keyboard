@@ -1,4 +1,5 @@
 0.03
+- Fix config() method and setting.
 - Fix dependencies.
 - Fix test dependencies.
 - Rename CHANGES to Changes.
