@@ -1,4 +1,5 @@
 0.03
+- Add LICENSE.
 - Fix config() method and setting.
 - Fix dependencies.
 - Fix test dependencies.
