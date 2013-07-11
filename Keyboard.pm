@@ -89,7 +89,7 @@ sub image {
 	($self->{'width'}, $self->{'height'}) = $self->_size($self->{'i'});
 
 	# Add all buttons.
-	foreach my $button_nr (@{$self->{'buttons'}}) {
+	foreach my $button_nr ($self->buttons) {
 		my $b_hr = $self->{'config'}->{'button'}->{$button_nr};
 
 		# Add text.

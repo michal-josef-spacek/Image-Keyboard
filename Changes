@@ -4,6 +4,7 @@
 - Fix test dependencies.
 - Remove white space from code.
 - Rename CHANGES to Changes.
+- Rewrite buttons adding to buttons() method.
 - Rewrite buttons() method to numerically sorted list.
 
 0.02 (February 21, 2013)
