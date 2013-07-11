@@ -5,7 +5,8 @@ TODO
 6. Nebylo by dobre imagemap() metodu dat mimo tento modul? Vraci Tags kod, ktery
    lidi nemusi chtit.
 7. Add SIGNATURE.
-8.
+8. Pridat zarovnani + vzdalenost od kraje pro zarovnani.
+9.
 
 Applied
 =======
