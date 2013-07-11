@@ -52,7 +52,7 @@ sub new {
 	return $self;
 }
 
-# Get buttons count.
+# Get buttons ids.
 sub buttons {
 	my $self = shift;
 	return sort { $a <=> $b } @{$self->{'buttons'}};
