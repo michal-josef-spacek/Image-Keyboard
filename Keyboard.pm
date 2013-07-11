@@ -9,7 +9,7 @@ use Class::Utils qw(set_params);
 use Encode qw(decode_utf8);
 use Error::Pure qw(err);
 use File::Spec::Functions qw(catfile);
-use HTML::Entities;
+use HTML::Entities qw(encode_entities);
 use Imager;
 use List::MoreUtils qw(none);
 
