@@ -92,7 +92,7 @@ sub image {
 	foreach my $button_nr ($self->buttons) {
 		my $b_hr = $self->{'config'}->{'button'}->{$button_nr};
 
-		# Add text.
+		# Font file.
 		my $font_file;
 		if (exists $b_hr->{'font'}->{'file'}) {
 			$font_file = catfile($self->{'files_dir'},
@@ -103,6 +103,8 @@ sub image {
 		} else {
 			err "No font file for button '$button_nr'.";
 		}
+
+		# Font color.
 		my $font_color;
 		if (exists $b_hr->{'font'}->{'color'}) {
 			$font_color = $b_hr->{'font'}->{'color'};
@@ -111,6 +113,8 @@ sub image {
 		} else {
 			err "No font color for button '$button_nr'.";
 		}
+
+		# Font size.
 		my $font_size;
 		if (exists $b_hr->{'font'}->{'size'}) {
 			$font_size = $b_hr->{'font'}->{'size'};
@@ -119,6 +123,8 @@ sub image {
 		} else {
 			err "No font size for button '$button_nr'.";
 		}
+
+		# Font object.
 		my $font = Imager::Font->new(
 			'file' => $font_file,
 			'color' => $font_color,
@@ -128,7 +134,8 @@ sub image {
 			err 'Cannot create font object.',
 				'Error', Imager->errstr;
 		}
-		my $color = Imager::Color->new($font_color);
+
+		# Get position of string.
 		my ($neg_width, $global_descent, $pos_width, $global_ascent,
 			$descent, $ascent, $advance_width, $right_bearing)
 			= $font->bounding_box(
@@ -145,6 +152,9 @@ sub image {
 		} else {
 			$y = $b_hr->{'h'} / 2 + $ascent / 2;
 		}
+
+		# Print string to image.
+		my $color = Imager::Color->new($font_color);
 		$b_hr->{'imager'}->string(
 			'aa' => 1,
 			'color' => $color,
