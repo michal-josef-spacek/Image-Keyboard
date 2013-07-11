@@ -298,13 +298,16 @@ __END__
 
 =head1 NAME
 
-Image::Keyboard - TODO
+Image::Keyboard - Perl class for image keyboard creating.
 
 =head1 SYNOPSIS
 
  use Image::Keyboard;
  my $obj = Image::Keyboard->new(%parameters);
- TODO
+ my @button_ids = $obj->buttons;
+ my $config_hr = $obj->config($config_hr);
+ $obj->image($image, $type);
+ my @imagemap = $obj->imagemap($usemap);
 
 =head1 METHODS
 
@@ -335,9 +338,8 @@ Constructor.
 
 =item C<buttons()>
 
- TODO?
- Get buttons count.
- TODO
+ Get buttons ids.
+ Return list of buttons ids.
 
 =item C<config($config_hr)>
 
@@ -359,9 +361,28 @@ Constructor.
 =head1 ERRORS
 
  new():
+         Bad files directory '%s'.
+         Cannot create imager object from '%s' file.
+                 Error: %s
+         Parameter 'config' is required.
          From Class::Utils::set_params():
                  Unknown parameter '%s'.
- TODO
+
+ config():
+         Cannot create imager object from '%s' file.
+                 Error: %s
+
+ image():
+         Cannot create background image
+                 Error: %s
+         Cannot create font object.
+                 Error: %s
+         Cannot write file to '%s'.
+                 Error: %s
+         No background image.
+         No font color for button '%s'.
+         No font file for button '%s'.
+         No font size for button '%s'.
 
 =head1 EXAMPLE
 

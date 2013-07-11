@@ -2,6 +2,7 @@
 - Fix config() method and setting.
 - Fix dependencies.
 - Fix test dependencies.
+- Improve doc.
 - Remove white space from code.
 - Rename CHANGES to Changes.
 - Rewrite buttons adding to buttons() method.
