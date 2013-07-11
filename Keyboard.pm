@@ -91,7 +91,7 @@ sub image {
 	# Add all buttons.
 	foreach my $button_nr (@{$self->{'buttons'}}) {
 		my $b_hr = $self->{'config'}->{'button'}->{$button_nr};
-		
+
 		# Add text.
 		my $font_file;
 		if (exists $b_hr->{'font'}->{'file'}) {
@@ -153,8 +153,8 @@ sub image {
 			'x' => $x,
 			'y' => $y,
 		);
-	
-		# Add image to main image.	
+
+		# Add image to main image.
 		$self->{'i'}->rubthrough(
 			'tx' => $b_hr->{'pos'}->{'left'},
 			'ty' => $b_hr->{'pos'}->{'top'},
@@ -164,7 +164,7 @@ sub image {
 
 	# Save.
 	my $ret = $self->{'i'}->write(
-		'file' => $image, 
+		'file' => $image,
 		defined $type ? (
 			'type' => $type,
 		) : (),
@@ -285,7 +285,7 @@ sub _size {
 	my ($self, $imager) = @_;
 	my $width = $imager->getwidth;
 	my $height = $imager->getheight;
-	return ($width, $height);	
+	return ($width, $height);
 }
 
 1;
