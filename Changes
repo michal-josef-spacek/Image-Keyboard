@@ -2,6 +2,7 @@
 - Fix dependencies.
 - Fix test dependencies.
 - Rename CHANGES to Changes.
+- Rewrite buttons() method to numerically sorted list.
 
 0.02 (February 21, 2013)
 - Add MANIFEST file.

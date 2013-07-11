@@ -55,7 +55,7 @@ sub new {
 # Get buttons count.
 sub buttons {
 	my $self = shift;
-	return @{$self->{'buttons'}};
+	return sort { $a <=> $b } @{$self->{'buttons'}};
 }
 
 # Get or set configuration.
