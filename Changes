@@ -1,6 +1,7 @@
 0.03
 - Add LICENSE.
 - Add REPOSITORY section to doc.
+- Add align for text in button.
 - Fix config() method and setting.
 - Fix dependencies.
 - Fix test dependencies.

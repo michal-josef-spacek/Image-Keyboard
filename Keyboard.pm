@@ -140,16 +140,39 @@ sub image {
 			$descent, $ascent, $advance_width, $right_bearing)
 			= $font->bounding_box(
 			'string' => $b_hr->{'text'}->{'string'});
+
+		# X coordinate.
 		my $x;
 		if (exists $b_hr->{'text'}->{'pos'}->{'x'}) {
 			$x = $b_hr->{'text'}->{'pos'}->{'x'};
-		} else {
+		} elsif (exists $b_hr->{'text'}->{'align'}->{'horz'}
+				&& defined $b_hr->{'text'}->{'align'}->{'horz'}) {
+
+			if ($b_hr->{'text'}->{'align'}->{'horz'} eq 'left') {
+				$x = 0;
+			} elsif ($b_hr->{'text'}->{'align'}->{'horz'} eq 'right') {
+				$x = $b_hr->{'w'} - $advance_width;
+			}
+		}
+		if (! defined $x) {
 			$x = $b_hr->{'w'} / 2 - $advance_width / 2;
 		}
+
+		# Y coordinate.
 		my $y;
 		if (exists $b_hr->{'text'}->{'pos'}->{'y'}) {
 			$y = $b_hr->{'text'}->{'pos'}->{'y'};
-		} else {
+		} elsif (exists $b_hr->{'text'}->{'align'}->{'vert'}
+			&& defined $b_hr->{'text'}->{'align'}->{'vert'}) {
+
+			# TODO Proverit, ze to funguje.
+			if ($b_hr->{'text'}->{'align'}->{'vert'} eq 'top') {
+				$y = 0;
+			} elsif ($b_hr->{'text'}->{'align'}->{'vert'} eq 'bottom') {
+				$y = $b_hr->{'h'} - $ascent;
+			}
+		}
+		if (! defined $y) {
 			$y = $b_hr->{'h'} / 2 + $ascent / 2;
 		}
 
