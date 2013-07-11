@@ -2,7 +2,9 @@ TODO
 ====
 5. Priklad v dokumentaci udelat tak, ze vymyslim ttf font s jednim znakem, ten
    embedduji do skriptu. On fly vytvorim obrazky klaves a pozadi a poskladam to.
-6.
+6. Nebylo by dobre imagemap() metodu dat mimo tento modul? Vraci Tags kod, ktery
+   lidi nemusi chtit.
+7.
 
 Applied
 =======
