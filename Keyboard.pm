@@ -409,6 +409,10 @@ L<List::MoreUtils>.
 
 L<Tags>.
 
+=head1 REPOSITORY
+
+L<https://github.com/tupinek/Image-Keyboard>
+
 =head1 AUTHOR
 
 Michal Špaček L<mailto:skim@cpan.org>

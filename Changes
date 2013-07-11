@@ -1,5 +1,6 @@
 0.03
 - Add LICENSE.
+- Add REPOSITORY section to doc.
 - Fix config() method and setting.
 - Fix dependencies.
 - Fix test dependencies.
