@@ -41,7 +41,7 @@ sub new {
 	}
 
 	# Check images directory.
-	if (! -d $self->{'files_dir'}) {
+	if (defined $self->{'files_dir'} && ! -d $self->{'files_dir'}) {
 		err "Bad files directory '$self->{'files_dir'}'.";
 	}
 
@@ -77,8 +77,7 @@ sub image {
 		err 'No background image.';
 	}
 	$self->{'i'} = Imager->new(
-		'file' => catfile($self->{'files_dir'},
-			$self->{'config'}->{'background'}),
+		'file' => $self->_file($self->{'config'}->{'background'}),
 	);
 	if (! defined $self->{'i'}) {
 		err 'Cannot create background image',
@@ -94,11 +93,12 @@ sub image {
 
 		# Font file.
 		my $font_file;
-		if (exists $b_hr->{'font'}->{'file'}) {
-			$font_file = catfile($self->{'files_dir'},
-				$b_hr->{'font'}->{'file'});
+		if (exists $b_hr->{'font'}->{'file'}
+			&& defined $b_hr->{'font'}->{'file'}) {
+
+			$font_file = $self->_file($b_hr->{'font'}->{'file'});
 		} elsif (exists $self->{'config'}->{'font'}->{'file'}) {
-			$font_file = catfile($self->{'files_dir'},
+			$font_file = $self->_file(
 				$self->{'config'}->{'font'}->{'file'});
 		} else {
 			err "No font file for button '$button_nr'.";
@@ -239,8 +239,7 @@ sub _button_imager {
 		my $b_hr = $self->{'config'}->{'button'}->{$button_nr};
 
 		# Create imager object for button.
-		my $image_path = catfile($self->{'files_dir'},
-			$b_hr->{'image'});
+		my $image_path = $self->_file($b_hr->{'image'});
 		$b_hr->{'imager'} = Imager->new('file' => $image_path);
 		if (! defined $b_hr->{'imager'}) {
 			err "Cannot create imager object from ".
@@ -288,6 +287,18 @@ sub _encode_js {
 	my $enc_value = encode_entities($value);
 	$value = $enc_value;
 	return $value;
+}
+
+# File helper.
+sub _file {
+	my ($self, $file_value) = @_;
+	my $file_path;
+	if (defined $self->{'files_dir'}) {
+		$file_path = catfile($self->{'files_dir'}, $file_value);
+	} else {
+		$file_path = $file_value;
+	}
+	return $file_path;
 }
 
 # Get sizes.

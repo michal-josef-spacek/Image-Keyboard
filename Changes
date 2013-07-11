@@ -5,6 +5,8 @@
 - Fix dependencies.
 - Fix test dependencies.
 - Improve doc.
+- Improve functionality with 'files_dir' parameter to situation with global
+  files directory and situation with absolute paths.
 - Remove white space from code.
 - Rename CHANGES to Changes.
 - Rewrite buttons adding to buttons() method.
