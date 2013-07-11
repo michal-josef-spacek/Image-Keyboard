@@ -10,11 +10,13 @@ abstract 'Perl class for image keyboard creating.';
 author 'Michal Špaček <skim@cpan.org>';
 license 'bsd';
 name 'Image-Keyboard';
-requires 'Cwd' => 0;
-requires 'English' => 0;
-requires 'Exporter' => 0;
+requires 'Class::Utils' => 0.03;
+requires 'Encode' => 0;
+requires 'Error::Pure' => 0.11;
+requires 'File::Spec::Functions' => 0;
+requires 'HTML::Entities' => 0;
+requires 'Imager' => 0;
 requires 'List::MoreUtils' => 0;
-requires 'Readonly' => 0;
 requires 'perl' => '5.6.2';
 resources 'bugtracker' => 'https://rt.cpan.org/Public/Dist/Display.html'.
 	'?Name=Image-Keyboard';
