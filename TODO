@@ -5,7 +5,6 @@ TODO
 6. Nebylo by dobre imagemap() metodu dat mimo tento modul? Vraci Tags kod, ktery
    lidi nemusi chtit.
 7. Add SIGNATURE.
-8. Pridat zarovnani + vzdalenost od kraje pro zarovnani.
 9.
 
 Applied
@@ -21,3 +20,6 @@ OK [20120909] skim
 
 2. Pridat metodu config pro get/set konfiguraku.
 OK [20120909] skim
+
+8. Pridat zarovnani + vzdalenost od kraje pro zarovnani.
+OK [20130723] skim
