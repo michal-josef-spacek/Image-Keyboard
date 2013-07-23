@@ -143,37 +143,53 @@ sub image {
 
 		# X coordinate.
 		my $x;
+		my $left = 0;
+		my $right = $b_hr->{'w'};
+		if (exists $b_hr->{'text'}->{'padding'}->{'left'}) {
+			$left += $b_hr->{'text'}->{'padding'}->{'left'};
+		} elsif (exists $b_hr->{'text'}->{'padding'}->{'right'}) {
+			$right -= $b_hr->{'text'}->{'padding'}->{'right'};
+		}
+		my $width = $right - $left;
 		if (exists $b_hr->{'text'}->{'pos'}->{'x'}) {
 			$x = $b_hr->{'text'}->{'pos'}->{'x'};
 		} elsif (exists $b_hr->{'text'}->{'align'}->{'horz'}
 				&& defined $b_hr->{'text'}->{'align'}->{'horz'}) {
 
 			if ($b_hr->{'text'}->{'align'}->{'horz'} eq 'left') {
-				$x = 0;
+				$x = $left;
 			} elsif ($b_hr->{'text'}->{'align'}->{'horz'} eq 'right') {
-				$x = $b_hr->{'w'} - $advance_width;
+				$x = $width - $advance_width;
 			}
 		}
 		if (! defined $x) {
-			$x = $b_hr->{'w'} / 2 - $advance_width / 2;
+			$x = $width / 2 - $advance_width / 2;
 		}
 
 		# Y coordinate.
+		# TODO Proverit, ze to funguje.
 		my $y;
+		my $top = 0;
+		my $bottom = $b_hr->{'h'};
+		if (exists $b_hr->{'text'}->{'padding'}->{'top'}) {
+			$top += $b_hr->{'text'}->{'padding'}->{'top'};
+		} elsif (exists $b_hr->{'text'}->{'padding'}->{'bottom'}) {
+			$bottom -= $b_hr->{'text'}->{'padding'}->{'bottom'};
+		}
+		my $height = $bottom - $top;
 		if (exists $b_hr->{'text'}->{'pos'}->{'y'}) {
 			$y = $b_hr->{'text'}->{'pos'}->{'y'};
 		} elsif (exists $b_hr->{'text'}->{'align'}->{'vert'}
 			&& defined $b_hr->{'text'}->{'align'}->{'vert'}) {
 
-			# TODO Proverit, ze to funguje.
 			if ($b_hr->{'text'}->{'align'}->{'vert'} eq 'top') {
-				$y = 0;
+				$y = $top;
 			} elsif ($b_hr->{'text'}->{'align'}->{'vert'} eq 'bottom') {
-				$y = $b_hr->{'h'} - $ascent;
+				$y = $height - $ascent;
 			}
 		}
 		if (! defined $y) {
-			$y = $b_hr->{'h'} / 2 + $ascent / 2;
+			$y = $height / 2 + $ascent / 2;
 		}
 
 		# Print string to image.
