@@ -5,7 +5,11 @@ TODO
 6. Nebylo by dobre imagemap() metodu dat mimo tento modul? Vraci Tags kod, ktery
    lidi nemusi chtit.
 7. Add SIGNATURE.
-9.
+9. Implementovat button box size.
+10. Implementovat button box barvu namisto obrazku.
+11. Implementovat barvu pozadi.
+12. Implementovat velikost pozadi.
+13. 
 
 Applied
 =======
