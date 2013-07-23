@@ -9,7 +9,9 @@ TODO
 10. Implementovat button box barvu namisto obrazku.
 11. Implementovat barvu pozadi.
 12. Implementovat velikost pozadi.
-13. 
+13. Zkontrolovat, jestli tlacitko s '.' je na stejne urovni jako treba 'p' nebo
+    '_'.
+14.
 
 Applied
 =======
