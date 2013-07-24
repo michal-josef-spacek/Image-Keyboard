@@ -168,13 +168,13 @@ sub image {
 		}
 
 		# Y coordinate.
-		# TODO Proverit, ze to funguje.
 		my $y;
 		my $top = 0;
 		my $bottom = $b_hr->{'h'};
 		if (exists $b_hr->{'text'}->{'padding'}->{'top'}) {
 			$top += $b_hr->{'text'}->{'padding'}->{'top'};
-		} elsif (exists $b_hr->{'text'}->{'padding'}->{'bottom'}) {
+		}
+		if (exists $b_hr->{'text'}->{'padding'}->{'bottom'}) {
 			$bottom -= $b_hr->{'text'}->{'padding'}->{'bottom'};
 		}
 		my $height = $bottom - $top;
