@@ -147,7 +147,8 @@ sub image {
 		my $right = $b_hr->{'w'};
 		if (exists $b_hr->{'text'}->{'padding'}->{'left'}) {
 			$left += $b_hr->{'text'}->{'padding'}->{'left'};
-		} elsif (exists $b_hr->{'text'}->{'padding'}->{'right'}) {
+		}
+		if (exists $b_hr->{'text'}->{'padding'}->{'right'}) {
 			$right -= $b_hr->{'text'}->{'padding'}->{'right'};
 		}
 		my $width = $right - $left;
@@ -159,7 +160,7 @@ sub image {
 			if ($b_hr->{'text'}->{'align'}->{'horz'} eq 'left') {
 				$x = $left;
 			} elsif ($b_hr->{'text'}->{'align'}->{'horz'} eq 'right') {
-				$x = $width - $advance_width;
+				$x = $right - $advance_width;
 			}
 		}
 		if (! defined $x) {
