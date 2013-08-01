@@ -309,18 +309,32 @@ sub _config_init {
 # Encode values for js.
 sub _encode_js {
 	my ($self, $value) = @_;
-	if ($value eq decode_utf8('←')) {
-		$value = 'Backspace';
-	} elsif ($value eq decode_utf8('°')) {
-		$value = 'Ring';
-	} elsif ($value eq decode_utf8('ˇ')) {
-		$value = 'Caron';
-	} elsif ($value eq decode_utf8('¨')) {
-		$value = 'Diaeresis';
+	if ($value eq decode_utf8('´')) {
+		$value = 'Acute_accent';
 	} elsif ($value eq decode_utf8('\'')) {
 		$value = 'Apostrophe';
-	} elsif ($value eq decode_utf8('´')) {
-		$value = 'Acute_accent';
+	} elsif ($value eq decode_utf8('←')) {
+		$value = 'Backspace';
+	} elsif ($value eq decode_utf8('˘')) {
+		$value = 'Breve';
+	} elsif ($value eq decode_utf8('ˇ')) {
+		$value = 'Caron';
+	} elsif ($value eq decode_utf8('¸')) {
+		$value = 'Cedilla';
+	} elsif ($value eq decode_utf8('ˆ')) {
+		$value = 'Circumflex';
+	} elsif ($value eq decode_utf8('¨')) {
+		$value = 'Diaeresis';
+	} elsif ($value eq decode_utf8('·')) {
+		$value = 'Dot';
+	} elsif ($value eq decode_utf8('˝')) {
+		$value = 'Double_acute_accent';
+	} elsif ($value eq decode_utf8('`')) {
+		$value = 'Grave_accent';
+	} elsif ($value eq decode_utf8('˛')) {
+		$value = 'Ogonek';
+	} elsif ($value eq decode_utf8('°')) {
+		$value = 'Ring';
 	} elsif ($value eq '\\') {
 		$value = '\\\\';
 	}
