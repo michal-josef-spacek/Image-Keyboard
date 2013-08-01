@@ -4,6 +4,7 @@
 - Add align for text in button.
 - Add padding for text in button.
 - Fix config() method and setting.
+- Fix char position in button.
 - Fix dependencies.
 - Fix test dependencies.
 - Improve doc.

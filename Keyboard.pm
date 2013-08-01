@@ -186,11 +186,11 @@ sub image {
 			if ($b_hr->{'text'}->{'align'}->{'vert'} eq 'top') {
 				$y = $top;
 			} elsif ($b_hr->{'text'}->{'align'}->{'vert'} eq 'bottom') {
-				$y = $height - $ascent;
+				$y = $height - $global_ascent;
 			}
 		}
 		if (! defined $y) {
-			$y = $height / 2 + $ascent / 2;
+			$y = $height / 2 + $global_ascent / 2 + $global_descent / 2;
 		}
 
 		# Print string to image.
