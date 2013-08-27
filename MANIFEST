@@ -13,6 +13,7 @@ LICENSE
 Makefile.PL
 MANIFEST			This list of files
 META.yml
+SIGNATURE
 t/Image-Keyboard/00-use.t
 t/Image-Keyboard/01-version.t
 t/Image-Keyboard/02-pod_coverage.t
