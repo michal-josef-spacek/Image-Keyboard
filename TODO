@@ -4,7 +4,6 @@ TODO
    embedduji do skriptu. On fly vytvorim obrazky klaves a pozadi a poskladam to.
 6. Nebylo by dobre imagemap() metodu dat mimo tento modul? Vraci Tags kod, ktery
    lidi nemusi chtit.
-7. Add SIGNATURE.
 9. Implementovat button box size.
 10. Implementovat button box barvu namisto obrazku.
 11. Implementovat barvu pozadi.
@@ -29,3 +28,6 @@ OK [20120909] skim
 
 8. Pridat zarovnani + vzdalenost od kraje pro zarovnani.
 OK [20130723] skim
+
+7. Add SIGNATURE.
+OK [20130924] skim
