@@ -1,25 +1,26 @@
 0.04
+ - Rewrite Changes file to CPAN::Changes::SPEC format.
 
-0.03 (August 27, 2013)
-- Add LICENSE.
-- Add REPOSITORY section to doc.
-- Add align for text in button.
-- Add new combining characters.
-- Add padding for text in button.
-- Fix config() method and setting.
-- Fix char position in button.
-- Fix dependencies.
-- Fix test dependencies.
-- Improve doc.
-- Improve functionality with 'files_dir' parameter to situation with global
-  files directory and situation with absolute paths.
-- Remove white space from code.
-- Rename CHANGES to Changes.
-- Rewrite buttons adding to buttons() method.
-- Rewrite buttons() method to numerically sorted list.
+0.03 2013-08-27
+ - Add LICENSE.
+ - Add REPOSITORY section to doc.
+ - Add align for text in button.
+ - Add new combining characters.
+ - Add padding for text in button.
+ - Fix config() method and setting.
+ - Fix char position in button.
+ - Fix dependencies.
+ - Fix test dependencies.
+ - Improve doc.
+ - Improve functionality with 'files_dir' parameter to situation with
+   global files directory and situation with absolute paths.
+ - Remove white space from code.
+ - Rename CHANGES to Changes.
+ - Rewrite buttons adding to buttons() method.
+ - Rewrite buttons() method to numerically sorted list.
 
-0.02 (February 21, 2013)
-- Add MANIFEST file.
+0.02 2013-02-21
+ - Add MANIFEST file.
 
-0.01 (February 21, 2013)
-- First version.
+0.01 2013-02-21
+ - First version.
