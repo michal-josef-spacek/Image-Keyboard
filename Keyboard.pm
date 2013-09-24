@@ -38,11 +38,6 @@ sub new {
 		err "Parameter 'config' is required.";
 	}
 
-	# Check images directory.
-	if (defined $self->{'files_dir'} && ! -d $self->{'files_dir'}) {
-		err "Bad files directory '$self->{'files_dir'}'.";
-	}
-
 	# Config initialization.
 	$self->_config_init;
 
@@ -69,6 +64,11 @@ sub config {
 # Create image.
 sub image {
 	my ($self, $image, $type) = @_;
+
+	# Check images directory.
+	if (defined $self->{'files_dir'} && ! -d $self->{'files_dir'}) {
+		err "Bad files directory '$self->{'files_dir'}'.";
+	}
 
 	# Create image.
 	if (! $self->{'config'}->{'background'}) {
@@ -334,6 +334,7 @@ Constructor.
 =item * C<files_dir>
 
  Images directory.
+ This variable is used in image() method only.
  Default value is undef.
 
 =back
@@ -358,7 +359,6 @@ Constructor.
 =head1 ERRORS
 
  new():
-         Bad files directory '%s'.
          Cannot create imager object from '%s' file.
                  Error: %s
          Parameter 'config' is required.
@@ -370,6 +370,7 @@ Constructor.
                  Error: %s
 
  image():
+         Bad files directory '%s'.
          Cannot create background image
                  Error: %s
          Cannot create font object.

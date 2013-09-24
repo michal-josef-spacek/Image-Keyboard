@@ -1,5 +1,6 @@
 0.04
  - Move code for imagemap() to Image::Keyboard::ImageMap::Tags.
+ - Move code for check 'files_dir' parameter to image() method.
  - Rewrite Changes file to CPAN::Changes::SPEC format.
 
 0.03 2013-08-27
