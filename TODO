@@ -2,8 +2,6 @@ TODO
 ====
 5. Priklad v dokumentaci udelat tak, ze vymyslim ttf font s jednim znakem, ten
    embedduji do skriptu. On fly vytvorim obrazky klaves a pozadi a poskladam to.
-6. Nebylo by dobre imagemap() metodu dat mimo tento modul? Vraci Tags kod, ktery
-   lidi nemusi chtit.
 9. Implementovat button box size.
 10. Implementovat button box barvu namisto obrazku.
 11. Implementovat barvu pozadi.
@@ -30,4 +28,9 @@ OK [20120909] skim
 OK [20130723] skim
 
 7. Add SIGNATURE.
+OK [20130924] skim
+
+6. Nebylo by dobre imagemap() metodu dat mimo tento modul? Vraci Tags kod, ktery
+   lidi nemusi chtit.
+Presunuto do Image::Keyboard::ImageMap::Tags
 OK [20130924] skim

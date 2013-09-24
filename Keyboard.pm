@@ -6,10 +6,8 @@ use warnings;
 
 # Modules.
 use Class::Utils qw(set_params);
-use Encode qw(decode_utf8);
 use Error::Pure qw(err);
 use File::Spec::Functions qw(catfile);
-use HTML::Entities qw(encode_entities);
 use Imager;
 use List::MoreUtils qw(none);
 
@@ -227,39 +225,6 @@ sub image {
 	return;
 }
 
-# Get image map.
-sub imagemap {
-	my ($self, $usemap) = @_;
-	if (! defined $usemap) {
-		$usemap = 'keyboard';
-	}
-	my @image_map = (
-		['b', 'map'],
-		['a', 'name', $usemap],
-	);
-	foreach my $button_nr ($self->buttons) {
-		my $b_hr = $self->{'config'}->{'button'}->{$button_nr};
-		my $left = $b_hr->{'pos'}->{'left'};
-		my $top = $b_hr->{'pos'}->{'top'};
-		my $coords = join ',', ($left, $top, $left + $b_hr->{'w'},
-			$top + $b_hr->{'h'});
-		my $string = $b_hr->{'text'}->{'string'};
-		my $enc_string = $self->_encode_js($string);
-		push @image_map, (
-			['b', 'area'],
-			['a', 'id', 'button_'.$button_nr],
-			['a', 'shape', 'rect'],
-			['a', 'coords', $coords],
-			['a', 'onClick', "keyboard_click('$enc_string');"],
-			['e', 'area'],
-		);
-	}
-	push @image_map, (
-		['e', 'map'],
-	);
-	return @image_map;
-}
-
 # Get buttons.
 sub _buttons {
 	my $self = shift;
@@ -306,43 +271,6 @@ sub _config_init {
 	return;
 }
 
-# Encode values for js.
-sub _encode_js {
-	my ($self, $value) = @_;
-	if ($value eq decode_utf8('´')) {
-		$value = 'Acute_accent';
-	} elsif ($value eq decode_utf8('\'')) {
-		$value = 'Apostrophe';
-	} elsif ($value eq decode_utf8('←')) {
-		$value = 'Backspace';
-	} elsif ($value eq decode_utf8('˘')) {
-		$value = 'Breve';
-	} elsif ($value eq decode_utf8('ˇ')) {
-		$value = 'Caron';
-	} elsif ($value eq decode_utf8('¸')) {
-		$value = 'Cedilla';
-	} elsif ($value eq decode_utf8('ˆ')) {
-		$value = 'Circumflex';
-	} elsif ($value eq decode_utf8('¨')) {
-		$value = 'Diaeresis';
-	} elsif ($value eq decode_utf8('·')) {
-		$value = 'Dot';
-	} elsif ($value eq decode_utf8('˝')) {
-		$value = 'Double_acute_accent';
-	} elsif ($value eq decode_utf8('`')) {
-		$value = 'Grave_accent';
-	} elsif ($value eq decode_utf8('˛')) {
-		$value = 'Ogonek';
-	} elsif ($value eq decode_utf8('°')) {
-		$value = 'Ring';
-	} elsif ($value eq '\\') {
-		$value = '\\\\';
-	}
-	my $enc_value = encode_entities($value);
-	$value = $enc_value;
-	return $value;
-}
-
 # File helper.
 sub _file {
 	my ($self, $file_value) = @_;
@@ -382,7 +310,6 @@ Image::Keyboard - Perl class for image keyboard creating.
  my @button_ids = $obj->buttons;
  my $config_hr = $obj->config($config_hr);
  $obj->image($image, $type);
- my @imagemap = $obj->imagemap($usemap);
 
 =head1 METHODS
 
@@ -426,11 +353,6 @@ Constructor.
  Create image.
  Returns undef.
 
-=item C<imagemap($usemap)>
-
- Get image map.
- Returns array of Tags elements.
-
 =back
 
 =head1 ERRORS
@@ -473,15 +395,15 @@ Constructor.
 =head1 DEPENDENCIES
 
 L<Class::Utils>,
-L<Encode>,
 L<Error::Pure>,
 L<File::Spec::Functions>,
-L<HTML::Entities>,
 L<Imager>,
 L<List::MoreUtils>.
 
 =head1 SEE ALSO
 
+L<Image::Keyboard::Config>,
+L<Image::Keyboard::ImageMap>,
 L<Tags>.
 
 =head1 REPOSITORY
