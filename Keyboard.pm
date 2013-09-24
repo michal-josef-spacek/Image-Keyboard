@@ -403,7 +403,7 @@ L<List::MoreUtils>.
 =head1 SEE ALSO
 
 L<Image::Keyboard::Config>,
-L<Image::Keyboard::ImageMap>,
+L<Image::Keyboard::ImageMap::Tags>,
 L<Tags>.
 
 =head1 REPOSITORY
