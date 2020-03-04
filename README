@@ -1,0 +1,214 @@
+NAME
+    Image::Keyboard - Perl class for image keyboard creating.
+
+SYNOPSIS
+     use Image::Keyboard;
+
+     my $obj = Image::Keyboard->new(%parameters);
+     my @button_ids = $obj->buttons;
+     my $config_hr = $obj->config($config_hr);
+     $obj->image($image, $type);
+
+METHODS
+  "new(%parameters)"
+     my $obj = Image::Keyboard->new(%parameters);
+
+    Constructor.
+
+    *       "config"
+
+             Configuration.
+             Default value is undef.
+
+    *       "disabled"
+
+             Disable buttons.
+             Default value is [].
+
+    *       "files_dir"
+
+             Images directory.
+             This variable is used in image() method only.
+             Default value is undef.
+
+  "buttons"
+     my @button_ids = $obj->buttons;
+
+    Get buttons ids.
+
+    Return list of buttons ids.
+
+  "config"
+     my $config_hr = $obj->config($config_hr);
+
+    Get or set configuration.
+
+    Returns hash reference to configuration structure.
+
+  "image"
+     $obj->image($image, $type);
+
+    Create image.
+
+    Returns undef.
+
+ERRORS
+     new():
+             Cannot create imager object from '%s' file.
+                     Error: %s
+             Parameter 'config' is required.
+             From Class::Utils::set_params():
+                     Unknown parameter '%s'.
+
+     config():
+             Cannot create imager object from '%s' file.
+                     Error: %s
+
+     image():
+             Bad files directory '%s'.
+             Cannot create background image
+                     Error: %s
+             Cannot create font object.
+                     Error: %s
+             Cannot write file to '%s'.
+                     Error: %s
+             No background image.
+             No font color for button '%s'.
+             No font file for button '%s'.
+             No font size for button '%s'.
+
+EXAMPLE
+     use strict;
+     use warnings;
+
+     use File::Spec::Functions qw(catfile);
+     use File::Temp qw(tempdir tempfile);
+     use Image::Keyboard;
+     use Imager;
+     use Imager::Color;
+
+     # Image dir.
+     my $image_dir = tempdir(CLEANUP => 1);
+
+     # Button.
+     my $i_button = Imager->new(
+             'xsize' => 100,
+             'ysize' => 100,
+     );
+     $i_button->box(
+             'color' => Imager::Color->new('#FF0000'),
+             'filled' => 1,
+     );
+     my $button_file = 'button_file.png';
+     $i_button->write(
+             'file' => catfile($image_dir, $button_file),
+             'type' => 'png',
+     );
+
+     # Background.
+     my $i_background = Imager->new(
+             'xsize' => 550,
+             'ysize' => 550,
+     );
+     $i_background->box(
+             'color' => Imager::Color->new('#00FF00'),
+             'filled' => 1,
+     );
+     my $background_file = 'background_file.png';
+     $i_background->write(
+             'file' => catfile($image_dir, $background_file),
+             'type' => 'png',
+     );
+
+     # Config.
+     my $config_hr = {
+             'background' => $background_file,
+             'font' => {
+                     'color' => 'black',
+                     'size' => 20,
+     # TODO Vygenerovat nejaky minimalni font.
+     #               'file' => 'DejaVuSans.ttf',
+             },
+             'button' => {
+                     '1' => {
+                             'text' => {
+                                     'string' => 1,
+                             },
+                             'image' => $button_file,
+                             'pos' => {
+                                     'top' => 50,
+                                     'left' => 50,
+                             },
+                     },
+                     '2' => {
+                             'text' => {
+                                     'string' => 2,
+                             },
+                             'image' => $button_file,
+                             'pos' => {
+                                     'top' => 50,
+                                     'left' => 200,
+                             },
+                     },
+                     '3' => {
+                             'text' => {
+                                     'string' => 3,
+                             },
+                             'image' => $button_file,
+                             'pos' => {
+                                     'top' => 200,
+                                     'left' => 50,
+                             },
+                     },
+                     '4' => {
+                             'text' => {
+                                     'string' => 4,
+                             },
+                             'image' => $button_file,
+                             'pos' => {
+                                     'top' => 200,
+                                     'left' => 200,
+                             },
+                     },
+             },
+     };
+
+     # Object.
+     my $keyboard = Image::Keyboard->new(
+             'config' => $config_hr,
+             'files_dir' => $image_dir,
+     );
+
+     # Save.
+     my (undef, $output_file) = tempfile();
+     $keyboard->image($output_file);
+
+     # Print to output.
+     print "Output file: $output_file\n";
+
+     # Output.
+     # TODO
+
+DEPENDENCIES
+    Class::Utils, Error::Pure, File::Spec::Functions, Imager,
+    List::MoreUtils.
+
+SEE ALSO
+    Image::Keyboard::Config, Image::Keyboard::ImageMap::Tags, Tags.
+
+REPOSITORY
+    <https://github.com/michal-josef-spacek/Image-Keyboard>
+
+AUTHOR
+    Michal Josef Špaček <mailto:skim@cpan.org>
+
+    <http://skim.cz>
+
+LICENSE AND COPYRIGHT
+    © 2012-2020 Michal Josef Špaček
+
+    BSD 2-Clause License
+
+VERSION
+    0.04
+

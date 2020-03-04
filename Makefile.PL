@@ -9,6 +9,7 @@ abstract 'Perl class for image keyboard creating.';
 author 'Michal Josef Spacek <skim@cpan.org>';
 license 'bsd';
 name 'Image-Keyboard';
+readme_from 'Keyboard.pm';
 requires 'Class::Utils' => 0.03;
 requires 'Encode' => 0;
 requires 'Error::Pure' => 0.11;

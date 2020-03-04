@@ -1,5 +1,6 @@
 0.04
  - Add Image::Keyboard::Layout class.
+ - Add README file.
  - Fix LICENSE file.
  - Fix Makefile.PL fails with no '.' in @INC.
  - Improve example in Image::Keyboard doc.
