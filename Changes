@@ -6,6 +6,7 @@
  - Move code for check 'files_dir' parameter to image() method.
  - Rewrite Changes file to CPAN::Changes::SPEC format.
  - Update Module::Install to 1.19 version.
+ - Update author github username.
 
 0.03 2013-08-27
  - Add LICENSE.

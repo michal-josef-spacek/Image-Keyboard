@@ -508,7 +508,7 @@ L<Tags>.
 
 =head1 REPOSITORY
 
-L<https://github.com/tupinek/Image-Keyboard>
+L<https://github.com/michal-josef-spacek/Image-Keyboard>
 
 =head1 AUTHOR
 
