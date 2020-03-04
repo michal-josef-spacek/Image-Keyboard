@@ -1,6 +1,7 @@
 0.04
  - Add Image::Keyboard::Layout class.
  - Fix LICENSE file.
+ - Fix Makefile.PL fails with no '.' in @INC.
  - Improve example in Image::Keyboard doc.
  - Move code for imagemap() to Image::Keyboard::ImageMap::Tags.
  - Move code for check 'files_dir' parameter to image() method.
