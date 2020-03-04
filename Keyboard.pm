@@ -1,17 +1,14 @@
 package Image::Keyboard;
 
-# Pragmas.
 use strict;
 use warnings;
 
-# Modules.
 use Class::Utils qw(set_params);
 use Error::Pure qw(err);
 use File::Spec::Functions qw(catfile);
 use Imager;
 use List::MoreUtils qw(none);
 
-# Version.
 our $VERSION = 0.04;
 
 # Constructor.
@@ -384,11 +381,9 @@ Constructor.
 
 =head1 EXAMPLE
 
- # Pragmas.
  use strict;
  use warnings;
 
- # Modules.
  use Image::Keyboard;
 
  # TODO
