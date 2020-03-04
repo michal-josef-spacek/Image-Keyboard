@@ -1,5 +1,6 @@
 Changes
 examples/ex1.pl
+examples/ex2.pl
 inc/Module/Install.pm
 inc/Module/Install/Base.pm
 inc/Module/Install/Can.pm
@@ -9,11 +10,16 @@ inc/Module/Install/Metadata.pm
 inc/Module/Install/Win32.pm
 inc/Module/Install/WriteAll.pm
 Keyboard.pm
+Keyboard/Layout.pm
 LICENSE
 Makefile.PL
 MANIFEST			This list of files
 META.yml
 SIGNATURE
+t/Image-Keyboard-Layout/00-use.t
+t/Image-Keyboard-Layout/01-version.t
+t/Image-Keyboard-Layout/02-pod_coverage.t
+t/Image-Keyboard-Layout/03-pod.t
 t/Image-Keyboard/00-use.t
 t/Image-Keyboard/01-version.t
 t/Image-Keyboard/02-pod_coverage.t

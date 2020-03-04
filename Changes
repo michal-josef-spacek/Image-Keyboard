@@ -1,4 +1,5 @@
 0.04
+ - Add Image::Keyboard::Layout class.
  - Fix LICENSE file.
  - Improve example in Image::Keyboard doc.
  - Move code for imagemap() to Image::Keyboard::ImageMap::Tags.
