@@ -2,6 +2,8 @@ Changes
 examples/ex1.pl
 examples/ex2.pl
 inc/Module/Install.pm
+inc/Module/Install/AuthorRequires.pm
+inc/Module/Install/AuthorTests.pm
 inc/Module/Install/Base.pm
 inc/Module/Install/Can.pm
 inc/Module/Install/Fetch.pm
@@ -18,11 +20,11 @@ MANIFEST			This list of files
 META.yml
 README
 SIGNATURE
-t/Image-Keyboard-Layout/00-use.t
+t/Image-Keyboard-Layout/01-use.t
 t/Image-Keyboard-Layout/01-version.t
-t/Image-Keyboard-Layout/02-pod_coverage.t
-t/Image-Keyboard-Layout/03-pod.t
-t/Image-Keyboard/00-use.t
-t/Image-Keyboard/01-version.t
-t/Image-Keyboard/02-pod_coverage.t
-t/Image-Keyboard/03-pod.t
+t/Image-Keyboard/01-use.t
+t/Image-Keyboard/02-version.t
+xt/Image-Keyboard-Layout/01-pod_coverage.t
+xt/Image-Keyboard-Layout/02-pod.t
+xt/Image-Keyboard/01-pod_coverage.t
+xt/Image-Keyboard/02-pod.t
