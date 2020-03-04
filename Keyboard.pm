@@ -303,6 +303,7 @@ Image::Keyboard - Perl class for image keyboard creating.
 =head1 SYNOPSIS
 
  use Image::Keyboard;
+
  my $obj = Image::Keyboard->new(%parameters);
  my @button_ids = $obj->buttons;
  my $config_hr = $obj->config($config_hr);
@@ -310,9 +311,9 @@ Image::Keyboard - Perl class for image keyboard creating.
 
 =head1 METHODS
 
-=over 8
+=head2 C<new(%parameters)>
 
-=item C<new(%parameters)>
+ my $obj = Image::Keyboard->new(%parameters);
 
 Constructor.
 
@@ -336,22 +337,29 @@ Constructor.
 
 =back
 
-=item C<buttons()>
+=head2 C<buttons>
 
- Get buttons ids.
- Return list of buttons ids.
+ my @button_ids = $obj->buttons;
 
-=item C<config($config_hr)>
+Get buttons ids.
 
- Get or set configuration.
- Returns hash reference to configuration structure.
+Return list of buttons ids.
 
-=item C<image($image, $type)>
+=head2 C<config>
 
- Create image.
- Returns undef.
+ my $config_hr = $obj->config($config_hr);
 
-=back
+Get or set configuration.
+
+Returns hash reference to configuration structure.
+
+=head2 C<image>
+
+ $obj->image($image, $type);
+
+Create image.
+
+Returns undef.
 
 =head1 ERRORS
 
