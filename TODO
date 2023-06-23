@@ -9,7 +9,8 @@ Patri pomoci nejakeho nastroje (fontforge) vytvorit ten font.
 12. Implementovat velikost pozadi.
 13. Zkontrolovat, jestli tlacitko s '.' je na stejne urovni jako treba 'p' nebo
     '_'.
-14.
+14. Add tests
+15.
 
 Applied
 =======
