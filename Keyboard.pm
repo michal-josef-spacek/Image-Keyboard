@@ -389,6 +389,8 @@ Returns undef.
 
 =head1 EXAMPLE
 
+=for comment filename=create_image_of_keyboard.pl
+
  use strict;
  use warnings;
 

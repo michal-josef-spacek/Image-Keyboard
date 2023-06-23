@@ -101,6 +101,8 @@ Returns scalar string.
 
 =head1 EXAMPLE
 
+=for comment filename=keyboard_layout.pl
+
  use strict;
  use warnings;
 
