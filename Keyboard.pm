@@ -321,21 +321,26 @@ Constructor.
 
 =item * C<config>
 
- Configuration.
- Default value is undef.
+Configuration.
+
+Default value is undef.
 
 =item * C<disabled>
 
- Disable buttons.
- Default value is [].
+Disable buttons.
+
+Default value is [].
 
 =item * C<files_dir>
 
- Images directory.
- This variable is used in image() method only.
- Default value is undef.
+Images directory.
+This variable is used in image() method only.
+
+Default value is undef.
 
 =back
+
+Returns instance of object.
 
 =head2 C<buttons>
 
@@ -343,7 +348,7 @@ Constructor.
 
 Get buttons ids.
 
-Return list of buttons ids.
+Returns list of buttons ids.
 
 =head2 C<config>
 

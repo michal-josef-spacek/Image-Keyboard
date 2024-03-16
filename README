@@ -17,26 +17,30 @@ METHODS
 
     *       "config"
 
-             Configuration.
-             Default value is undef.
+            Configuration.
+
+            Default value is undef.
 
     *       "disabled"
 
-             Disable buttons.
-             Default value is [].
+            Disable buttons.
+
+            Default value is [].
 
     *       "files_dir"
 
-             Images directory.
-             This variable is used in image() method only.
-             Default value is undef.
+            Images directory. This variable is used in image() method only.
+
+            Default value is undef.
+
+    Returns instance of object.
 
   "buttons"
      my @button_ids = $obj->buttons;
 
     Get buttons ids.
 
-    Return list of buttons ids.
+    Returns list of buttons ids.
 
   "config"
      my $config_hr = $obj->config($config_hr);
