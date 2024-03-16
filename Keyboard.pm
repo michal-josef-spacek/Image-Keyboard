@@ -7,7 +7,7 @@ use Class::Utils qw(set_params);
 use Error::Pure qw(err);
 use File::Spec::Functions qw(catfile);
 use Imager;
-use List::MoreUtils qw(none);
+use List::Util 1.33 qw(none);
 
 our $VERSION = 0.04;
 
@@ -508,7 +508,7 @@ L<Class::Utils>,
 L<Error::Pure>,
 L<File::Spec::Functions>,
 L<Imager>,
-L<List::MoreUtils>.
+L<List::Util>.
 
 =head1 SEE ALSO
 

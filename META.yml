@@ -29,7 +29,7 @@ requires:
   File::Spec::Functions: 0
   HTML::Entities: 0
   Imager: 0
-  List::MoreUtils: 0
+  List::Util: 1.33
   perl: 5.6.2
 resources:
   bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=Image-Keyboard

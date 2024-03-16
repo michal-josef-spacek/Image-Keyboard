@@ -190,8 +190,7 @@ EXAMPLE
      # TODO
 
 DEPENDENCIES
-    Class::Utils, Error::Pure, File::Spec::Functions, Imager,
-    List::MoreUtils.
+    Class::Utils, Error::Pure, File::Spec::Functions, Imager, List::Util.
 
 SEE ALSO
     Image::Keyboard::Config, Image::Keyboard::ImageMap::Tags, Tags.

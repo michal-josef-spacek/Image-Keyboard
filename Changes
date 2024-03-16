@@ -8,6 +8,7 @@
  - Move code for imagemap() to Image::Keyboard::ImageMap::Tags.
  - Move code for check 'files_dir' parameter to image() method.
  - Rewrite Changes file to CPAN::Changes::SPEC format.
+ - Rewrite List::MoreUtils to List::Util.
  - Rewrite to better example filenames.
  - Update Image::Keyboard doc to my standard.
  - Update LICENSE AND COPYRIGHT section in doc.
